@@ -1,0 +1,35 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[6]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{
+save_window_ = new Graph(0)
+save_window_.size(-10000,10000,-80,40)
+scene_vector_[4] = save_window_
+{save_window_.view(-10000, -80, 20000, 120, 680, 7, 344.7, 178.3)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,6,-1,5)
+scene_vector_[5] = save_window_
+{save_window_.view(0, -1, 6, 6, 681, 313, 342.9, 384.4)}
+graphList[1].append(save_window_)
+save_window_.save_name("graphList[1].")
+save_window_.addexpr("soma.im_hhq(.05)-.5", 1, 1, 1.49032, -0.546837, 1)
+save_window_.addexpr("axon.im_hhq(.05)+.5", 1, 1, 3.02323, 0.967906, 1)
+save_window_.addexpr("axon.im_hhq(.15)+1.5", 1, 1, 3.11613, 2.17254, 1)
+save_window_.addexpr("axon.im_hhq(.25)+2.5", 1, 1, 3.11613, 3.35333, 1)
+save_window_.addexpr("axon.im_hhq(.35)+3.5", 1, 1, 2.83742, 4.52219, 1)
+save_window_.addexpr("axon.im_hhq(.45)+4.5", 1, 1, 2.79097, 5.7149, 1)
+save_window_.addexpr("axon.im_hhq(.55)+5.5", 1, 1, 2.72129, 6.63328, 1)
+}
+objectvar scene_vector_[1]
+{doNotify()}

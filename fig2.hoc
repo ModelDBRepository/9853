@@ -1,0 +1,11 @@
+load_file("init.hoc")
+load_file(1, "fig2.ses")
+
+forall nseg=30
+soma.diam = 550
+forall { L = nseg*500}
+
+{tstop=6 tstop_changed()}
+cvode_active(0)
+run()
+

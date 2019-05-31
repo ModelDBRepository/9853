@@ -1,0 +1,15 @@
+load_file("init.hoc")
+load_file(1, "fig5.ses")
+
+forall nseg=50
+forall diam=500
+soma.Ra = 1
+forall { L = nseg*200}
+forall insert hhq
+{tstop=6 tstop_changed()}
+celsius = 2
+IClamp[0].amp=20000
+cvode.atol(1e-6)
+cvode_active(1) // for accurate current calculations
+run()
+

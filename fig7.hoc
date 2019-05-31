@@ -1,0 +1,22 @@
+load_file("init.hoc")
+load_file(1, "fig7.ses")
+axon { L = 16000 nseg=80}
+soma { L = 4000  nseg=20}
+
+forall diam=500
+soma.Ra = 1
+forall { L = nseg*200}
+forall insert hhq
+{tstop=6 tstop_changed()}
+IClamp[0].amp=20000
+cvode.atol(1e-6)
+cvode_active(1) // for accurate current calculations
+/*
+xpanel("Temperature run")
+xradiobutton("26 degC", "celsius=26 run()", 1)
+xradiobutton("2 degC", "celsius=2 run()")
+xpanel(100, 200)
+*/
+celsius = 26
+run()
+

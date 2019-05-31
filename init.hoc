@@ -1,0 +1,91 @@
+load_file("nrngui.hoc")
+load_file("start.ses")
+secondorder=1 // can't mix first and second order currentis in the iion calculation
+		// best to use cvode for accurate currents
+
+func ia1() {local i
+	axon {
+		i = (v(.5) - v(.5-1/nseg))/ri(.5)
+	}
+	return i/1000
+}
+func ia2() {local i, x
+	axon {
+		x = .01 + 1/nseg
+		i = (v(x) - v(.01))/ri(x)
+	}
+	return i/1000
+}
+func ia3() {local i, dx
+	// central difference
+	soma {
+		dx = 1/nseg
+		i = (v(.5*dx) - v(1.5*dx))/(ri(2*dx))
+	}
+	return i/1000
+}
+
+func soma_iion() { local i
+	soma {i =  ina($1) + ik($1) + il_hh($1)}
+	return i
+}
+
+func axon_iion() { local i, dx
+	axon {i =  ina($1) + ik($1) + il_hh($1)}
+	return i
+}
+
+// mechanism for integrating current to compute charge
+begintemplate HHInt
+public qna, qk, qil, qion
+proc initial() {
+	qna = 0
+	qk = 0
+	ql = 0
+	qion = 0
+}
+proc after_step() {
+	qna += ina($1)*dt/FARADAY*(1e6)
+	qk += ik($1)*dt/FARADAY*(1e6)
+	qil += il_hh($1)*dt/FARADAY*(1e6)
+	qion = qna + qk + qil
+}
+
+endtemplate HHInt
+
+make_mechanism("hhint", "HHInt")
+
+// for fig6 and 7 membrane current and charge transfer calculations
+begintemplate HHQ
+public im, qin, qout
+proc initial() {
+	qin = 0
+	qout = 0
+}
+proc after_step() {
+	im = ina($1)+ik($1)+il_hh($1)+i_cap($1)
+	if (im < 0) {
+		qin -= im*dt/FARADAY*(1e6)
+	}else{
+		qout -= im*dt/FARADAY*(1e6)
+	}
+}
+
+endtemplate HHQ
+
+make_mechanism("hhq", "HHQ")
+
+
+proc standard() {
+	celsius = 16
+	forall nseg 30
+	axon.diam = 100
+	soma.diam = 550
+	forall Ra = 35.4
+	forall { L = nseg*500 }
+	forall uninsert hhint
+	forall uninsert hhq
+	IClamp[0].amp = 2000
+}
+
+

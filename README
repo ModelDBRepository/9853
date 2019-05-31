@@ -1,0 +1,17 @@
+Joyner, Westerfield, and Moore (1980)
+Effects of cellular geometry on current flow during a propagated action potential.
+Biophys. J. 31: 183-194
+
+This model qualitatively reproduces figures 2,3,4,5 and,
+to a lesser extent, fig 7.
+It is entirely possible that I misinterpreted  the meaning of figure 7 as
+a plot of separately integrated positive and negative total membrane current.
+Such a plot shows much less "charge transfer" in the proximal region of
+the wire than is shown in the paper figure.
+I attribute other discrepancies to the precise recording locations and the
+details of spatial discretization.
+
+The NEURON implementation of this model was prepared by Michael Hines.
+Questions about details of this implementation should be addressed to him
+at michael.hines@yale.edu.
+

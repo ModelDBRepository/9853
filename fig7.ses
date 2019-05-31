@@ -1,0 +1,60 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[7]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{
+save_window_ = new Graph(0)
+save_window_.size(-16000,4000,-80,40)
+scene_vector_[4] = save_window_
+{save_window_.view(-16000, -80, 20000, 120, 628, 4, 414, 168.4)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(-16000,4000,-0.8,0.4)
+scene_vector_[5] = save_window_
+{save_window_.view(-16000, -0.8, 20000, 1.2, 630, 300, 413.1, 160.3)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("im_hhq")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 1, 1, 0.8, 0.9)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(-16000,4000,-2,2)
+scene_vector_[6] = save_window_
+{save_window_.view(-16000, -2, 20000, 4, 631, 590, 414, 165.7)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("qin_hhq")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+objectvar rvp_
+rvp_ = new RangeVarPlot("qout_hhq")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 3, 1, 0.8, 0.9)
+}
+{
+xpanel("Temperature run", 0)
+xradiobutton("26 degC","celsius=26 run()",1)
+xradiobutton("2 degC","celsius=2 run()")
+xpanel(434,111)
+}
+objectvar scene_vector_[1]
+{doNotify()}

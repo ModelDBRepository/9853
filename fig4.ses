@@ -1,0 +1,46 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[6]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{
+save_window_ = new Graph(0)
+save_window_.size(-10000,10000,-80,40)
+scene_vector_[4] = save_window_
+{save_window_.view(-10000, -80, 20000, 120, 742, 2, 351, 200.8)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("v")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(-10000,10000,-8,8)
+scene_vector_[5] = save_window_
+{save_window_.view(-10000, -8, 20000, 16, 742, 342, 355.5, 356.5)}
+flush_list.append(save_window_)
+save_window_.save_name("flush_list.")
+objectvar rvp_
+rvp_ = new RangeVarPlot("qna_hhint")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 2, 1, 0.8, 0.9)
+objectvar rvp_
+rvp_ = new RangeVarPlot("qk_hhint")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 3, 1, 0.8, 0.9)
+objectvar rvp_
+rvp_ = new RangeVarPlot("qion_hhint")
+axon rvp_.begin(1)
+soma rvp_.end(1)
+rvp_.origin(0)
+save_window_.addobject(rvp_, 1, 1, 0.8, 0.9)
+}
+objectvar scene_vector_[1]
+{doNotify()}

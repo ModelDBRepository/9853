@@ -1,0 +1,12 @@
+load_file("init.hoc")
+load_file(1, "fig3.ses")
+
+forall nseg=50
+soma.diam = 400
+forall { L = nseg*200}
+
+{tstop=4 tstop_changed()}
+cvode.atol(1e-6)
+cvode_active(1)
+run()
+
